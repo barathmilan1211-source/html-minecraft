@@ -2,7 +2,7 @@
 <!-- Ultimate Game Stash file --> 
 <html>
 <head>
-  <title>Minecraft EaglercraftX Edition</title>
+  <title>Minecraft Custom Edition</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -25,29 +25,36 @@
       align-items: center;
       background-color: #000;
     }
-    /* Az óra elhelyezése a játék felett */
-    #currentTime {
+    /* UI Konténer a logónak és az órának */
+    #ui_container {
       position: absolute;
-      top: 15px;
-      left: 15px;
+      top: 20px;
+      left: 20px;
       z-index: 100;
-      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       background: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 4px;
+      padding: 10px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    #custom_logo {
+      max-width: 180px; /* Itt állíthatod a logó méretét */
+      height: auto;
+      margin-bottom: 8px;
     }
   </style>
 
-  <!-- EaglercraftX alap könyvtárak -->
+  <!-- EaglercraftX könyvtárak -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/classes.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/fix-webm-duration.js"></script>
   
   <script type="text/javascript">
     window.addEventListener("load", () => {
       if (document.location.href.startsWith("file:")) {
-        alert("HTTP szerver szükséges! Ne várd, hogy helyi fájlként fusson.");
+        console.warn("HTTP szerver szükséges a futtatáshoz![cite: 3]");
       } else {
-        // EaglercraftX beállítások[cite: 3]
         window.eaglercraftXOpts = {
           container: "game_frame",
           assetsURI: "https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/assets.epk",
@@ -64,8 +71,12 @@
   </script>
 </head>
 <body>
-  <!-- Az óra eleme, ami a script.js-ből kapja az adatot -->
-  <div id="currentTime" class="title"></div>
+  <!-- Egyéni felület: Kép + Óra -->
+  <div id="ui_container">
+    <!-- Cseréld ki a 'logo.png' nevet a saját képed nevére -->
+    <img src="logo.png" alt="Minecraft Logo" id="custom_logo">
+    <div id="currentTime" class="title"></div>
+  </div>
 
   <div id="game_frame"></div>
 </body>
